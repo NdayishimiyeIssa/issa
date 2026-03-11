@@ -43,3 +43,9 @@ class Budget(models.Model):
     name = models.CharField(max_length=100)
     limit_amount = models.DecimalField(max_digits=10, decimal_places=2)
     month = models.DateField()
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
