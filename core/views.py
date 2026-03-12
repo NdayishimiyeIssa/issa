@@ -2,6 +2,8 @@ from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 from core.models import Testing, Transaction, Category
 from core.serializers import TestingSerializer, TransactionSerializer, CategorySerializer
@@ -14,6 +16,8 @@ def testing_view(request):
 
 
 class TransactionListView(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         transactions = Transaction.objects.all()
@@ -29,6 +33,8 @@ class TransactionListView(APIView):
 
 
 class TransactionDetailView(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self, id):
         try:
@@ -71,6 +77,8 @@ class TransactionDetailView(APIView):
 
 
 class CategoryListView(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get(self, request):
         categories = Category.objects.all()
@@ -86,6 +94,8 @@ class CategoryListView(APIView):
 
 
 class CategoryDetailView(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def get_object(self, id):
         try:
